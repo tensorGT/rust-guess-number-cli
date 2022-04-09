@@ -12,3 +12,17 @@ fn simple_random(max_val: u32) -> u32 {
     (nanos % max_val) + 1
 }
 
+fn load_best() -> Option<u32> {
+    fs::read_to_string(SCORE_FILE)
+        .ok()
+        .and_then(|s| s.trim().parse::<u32>().ok())
+}
+
+fn save_best(score: u32) {
+    let _ = fs::write(SCORE_FILE, score.to_string());
+}
+
+fn main() {
+    let secret = simple_random(100);
+    let best = load_best();
+    println!("guess the number between 1 and 100!");
