@@ -26,3 +26,18 @@ fn main() {
     let secret = simple_random(100);
     let best = load_best();
     println!("guess the number between 1 and 100!");
+    if let Some(b) = best {
+        println!("current best score: {} tries", b);
+    }
+
+    let mut tries: u32 = 0;
+
+    loop {
+        print!("your guess: ");
+        let _ = io::stdout().flush();
+
+        let mut input = String::new();
+        if io::stdin().read_line(&mut input).is_err() {
+            println!("could not read input");
+            continue;
+        }
