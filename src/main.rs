@@ -41,3 +41,17 @@ fn main() {
             println!("could not read input");
             continue;
         }
+
+        let guess: u32 = match input.trim().parse() {
+            Ok(n) => n,
+            Err(_) => {
+                println!("please type a valid positive number");
+                continue;
+            }
+        };
+
+        if guess < 1 || guess > 100 {
+            println!("number must be between 1 and 100");
+            continue;
+        }
+
