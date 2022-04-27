@@ -55,3 +55,18 @@ fn main() {
             continue;
         }
 
+        tries += 1;
+        if guess < secret {
+            println!("too small!");
+        } else if guess > secret {
+            println!("too big!");
+        } else {
+            println!("you got it in {} tries!", tries);
+            if best.map(|b| tries < b).unwrap_or(true) {
+                println!("new best score!!");
+                save_best(tries);
+            }
+            break;
+        }
+    }
+}
